@@ -3,7 +3,6 @@ from difflib import get_close_matches
 data = json.load(open("data.json"))
 
 def translate(word):
-    word = word.lower()
     if word in data:
         return data[word]
     elif word.title() in data:
@@ -23,11 +22,21 @@ def translate(word):
         print("You have entered wrong keys. Try again")
         
 
+print("\n ================================= \n Welcome to Dictionary Query Program!\n =================================\n")
+i = 0
+while 1:
+    i += 1 
+    word = input("\nEnter the word ["+ str(i) +"] you want to search [zzz to exit]: ")
+    word = word.lower()
+    word = word.strip()
+    if word == "zzz":
+        break
+    else:
+        output = translate(word)
+        if type(output) == list:
+            for item in output:
+                print(item)
+        else:
+            print(output)
 
-word = input("Enter the word you want to search: ")
-output = translate(word)
-if type(output) == list:
-    for item in output:
-        print(item)
-else:
-    print(output)
+print("\n ================================= \n Thank you hope to see you again!\n =================================\n")
